@@ -1,10 +1,11 @@
 name: Sync translation files CSV and JSON
 
-on: push
-  # paths:
-  #   - 'client/glossary/**.csv'
-  #   - 'client/public/locales/**.json'
-
+on:
+  push:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      # Push events on main branch
+      - main
 jobs:
   sync_translation:
     name: 'Sync translation files CSV and JSON'
