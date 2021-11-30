@@ -11,10 +11,6 @@ jobs:
     name: 'Sync translation files CSV and JSON'
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        working-directory: client
-
     strategy:
       matrix:
         node-version: [14.x]
@@ -34,7 +30,8 @@ jobs:
       - name: Run json to csv script'
 #         working-directory: client
         run: |
-          chmod +x "../scripts/json2csvAction"
+          chmod +x "./scripts/json2csvAction"
+          sh "./scripts/json2csvAction"
         shell: bash
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
