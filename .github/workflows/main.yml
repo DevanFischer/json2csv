@@ -16,18 +16,18 @@ jobs:
         node-version: [14.x]
 
     steps:
-      - uses: actions/checkout@v2
-        name: Check out repository
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/checkout@v2
+    - name: Check out repository
+        uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Install deps
-        run: yarn install
+    - name: Install deps
+        run: yarn install
 #       - name: Run eslint
 #         run: yarn lint
-      - name: Run json to csv script'
+    - name: Run json to csv script'
 #         working-directory: client
         run: |
           sh "./scripts/json2csvAction"
