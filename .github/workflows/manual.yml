@@ -4,13 +4,11 @@ name: Manual workflow
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
-on:
-  workflow_dispatch
-  
+on: workflow_dispatch
+
 defaults:
   run:
     shell: bash
-#     working-directory: ./scripts
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,10 +19,9 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Convert Json to Csv
-      working-directory: scripts
-      run: |
-          chmod +x ./json2csvAction
-          sh ./json2csvAction
-          
+      # Runs a single command using the runners shell
+      - name: Convert Json to Csv
+        working-directory: scripts
+        run: |
+          chmod +x ./json2csv.sh
+          sh ./json2csv.sh
