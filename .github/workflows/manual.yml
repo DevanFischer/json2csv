@@ -14,6 +14,7 @@ jobs:
       - name: Convert Json to CSV
         working-directory: scripts
         run: |
+          chmod +x ./json2csv.sh
           sh ./json2csv.sh
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
