@@ -1,0 +1,17 @@
+#!/bin/bash
+rootdir=..
+for locale in $rootdir/public/locales/*
+do
+	localename=$(basename -- $locale)
+	# echo "$localename"
+	# mkdir -p $rootdir/glossary/$localename
+    touch file.txt
+	for file in $rootdir/public/locales/$localename/*.json
+	do
+		filename=$(basename -- $file)
+        echo $filename>> file.txt
+		# npx i18next-json-csv-converter $rootdir/public/locales/$localename/$filename $rootdir/glossary/$localename/${filename%.*}.csv
+		# echo "" >> $rootdir/glossary/$localename/${filename%.*}.csv
+		# echo "glossary/${filename%.*}.csv"
+	done
+done
