@@ -1,7 +1,6 @@
 name: Sync translation files CSV and JSON
 
-on:
-  push
+on: push
   # paths:
   #   - 'client/glossary/**.csv'
   #   - 'client/public/locales/**.json'
