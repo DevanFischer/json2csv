@@ -2,12 +2,12 @@ name: Convert Json to CSV
 
 on:
   push:
-    paths:
-      - "./client/public/locales/*"
+    branches:
+      - main
 
-# defaults:
-#   run:
-#     shell: bash
+defaults:
+  run:
+    shell: bash
 
 jobs:
   convert-json2csv:
