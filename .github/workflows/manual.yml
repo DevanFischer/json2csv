@@ -6,6 +6,11 @@ name: Manual workflow
 # or API.
 on:
   workflow_dispatch
+  
+defaults:
+  run:
+    shell: bash
+    working-directory: scripts
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -19,6 +24,6 @@ jobs:
     # Runs a single command using the runners shell
     - name: Convert Json to Csv
       run: |
-          chmod +x scripts/json2csvAction
-          sh scripts/json2csvAction
+          chmod +x json2csvAction
+          sh json2csvAction
           
