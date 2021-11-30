@@ -23,7 +23,8 @@ jobs:
     steps:
     # Runs a single command using the runners shell
     - name: Convert Json to Csv
+      working-directory: scripts
       run: |
-          chmod +x ./scripts/json2csvAction
-          sh ./scripts/json2csvAction
+          chmod +x ./json2csvAction
+          sh ./json2csvAction
           
