@@ -27,9 +27,9 @@ jobs:
           chmod +x ./json2csv.sh
           sh ./json2csv.sh
       - uses: stefanzweifel/git-auto-commit-action@v4
-          with:
+        with:
             commit_message: Automated Change
 
 #           Optional branch name where commit should be pushed to.
 #           Defaults to the current branch.
-            branch: main
+            branch: main
