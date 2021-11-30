@@ -1,10 +1,6 @@
 name: Sync translation files CSV and JSON
 
-on:
-  push:
-    branches:    
-      - 'main'
-
+on: push
 
 jobs:
   sync_translation:
@@ -14,27 +10,14 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-
+        
     steps:
-      uses: actions/checkout@v2
-    - name: Check out repository
-        uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-    - name: Run json to csv script'
-#         working-directory: client
-        run: |
+      - name: Run json to csv script'
+        run: |
           sh "./scripts/json2csvAction"
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-#           Optional, but recommended
-#           Defaults to "Apply automatic changes"
           commit_message: Automated Change
-
-#           Optional branch name where commit should be pushed to.
-#           Defaults to the current branch.
           branch: main
 
 #           Optional. Used by `git-commit`.
