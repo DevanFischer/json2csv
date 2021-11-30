@@ -1,20 +1,19 @@
-name: Sync Translations
+name: Convert Json to CSV
 
-on: workflow_dispatch
+on: push
 
 defaults:
   run:
     shell: bash
 
 jobs:
-  Sync-Translation:
+  convert-json2csv:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Convert Json to Csv
+      - name: Convert Json to CSV
         working-directory: scripts
         run: |
-          chmod +x ./json2csv.sh
           sh ./json2csv.sh
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
