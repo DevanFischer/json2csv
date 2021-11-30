@@ -1,7 +1,10 @@
 name: Sync translation files CSV and JSON
 
 on:
-  push
+  push:
+    branches:    
+      - 'main'
+
 
 jobs:
   sync_translation:
