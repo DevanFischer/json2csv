@@ -1,10 +1,13 @@
 name: Convert Json to CSV
 
-on: push
+on:
+  push:
+    paths:
+      - "./client/public/locales"
 
-defaults:
-  run:
-    shell: bash
+# defaults:
+#   run:
+#     shell: bash
 
 jobs:
   convert-json2csv:
@@ -19,4 +22,3 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Automated Json to CSV
-          # branch: main
