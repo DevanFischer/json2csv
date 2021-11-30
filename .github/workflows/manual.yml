@@ -3,7 +3,7 @@ name: Convert Json to CSV
 on:
   push:
     paths:
-      - "./client/public/locales"
+      - "./client/public/locales/*"
 
 # defaults:
 #   run:
