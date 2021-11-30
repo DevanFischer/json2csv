@@ -34,8 +34,9 @@ jobs:
       - name: Run json to csv script'
 #         working-directory: client
         run: |
-          chmod +x ../scripts/json2csvAction
-          ../scripts/json2csvAction
+          chmod +x "../scripts/json2csvAction"
+          "../scripts/json2csvAction"
+        shell: bash
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           # Optional, but recommended
