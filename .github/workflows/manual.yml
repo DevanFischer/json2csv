@@ -1,24 +1,56 @@
-name: Convert Json to CSV
-
+name: Auto convert translations
 on:
-  push:
-    paths:
-      - "./client/public/locales/*"
-
-# defaults:
-#   run:
-#     shell: bash
-
+  push:
+    paths:
+      - 'client/glossary/**'
+      - 'client/public/locales/**'
+defaults:
+  run:
+    shell: bash
 jobs:
-  convert-json2csv:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Convert Json to CSV
-        working-directory: scripts
-        run: |
-          chmod +x ./json2csv.sh
-          sh ./json2csv.sh
-      - uses: stefanzweifel/git-auto-commit-action@v4
-        with:
-          commit_message: Automated Json to CSV
+  convert-json-to-csv:
+    runs-on: ubuntu-latest
+    steps:
+#       get the repo
+      - uses: actions/checkout@v2
+
+#       External action to detect changes in a given directory
+      - name: Extract branch name
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          base: ${{ steps.extract_branch.outputs.branch }}
+          filters: |
+            JSON:
+              - 'client/public/locales/**'
+            CSV:
+              - 'client/glossary/**'
+
+      - name: Convert JSON to CSV
+#         only run this job if the json directory changed
+        if: steps.changes.outputs.JSON == 'true'
+        working-directory: client/scripts
+        run: |
+          chmod +x ./makeCsvAction.sh
+          sh ./makeCsvAction.sh
+
+      - name: Convert CSV to JSON
+#         only run this job if the csv directory changed
+        if: steps.changes.outputs.CSV == 'true'
+        working-directory: client/scripts
+        run: |
+          chmod +x ./makeJsonAction.sh
+          sh ./makeJsonAction.sh
+#         External action that auto commits and pushes
+#         there are a lot more use cases, refer to docs.
+#         https://github.com/stefanzweifel/git-auto-commit-action
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'chore: auto convert translation JSON/CSV files'
+#           Optional branch name where commit should be pushed to.
+#           Defaults to the current branch.
+#           branch: feature-123
